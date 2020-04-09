@@ -1,13 +1,15 @@
-import React, { Component } from "react";
-import Title from "./components/title/title"
+import React from "react";
+import Title from "./components/title/title";
+import Table from "./components/table/table";
 import "./App.css";
 
-export default class App extends Component {
-  render() {
-    return (
-      <div  className='main'>
-        <Title />
-      </div>
-    );
-  }
-}
+const App = () => {
+  return (
+    <div className='main'>
+      <Title />
+      <Table />
+    </div>
+  );
+};
+
+export default App;
