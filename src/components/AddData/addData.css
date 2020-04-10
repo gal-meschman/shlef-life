@@ -1,0 +1,10 @@
+.addData {
+  display: grid;
+  grid-area: 3 / 2;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.dropdown {
+  justify-self: center;
+  margin-top: 1px;
+}

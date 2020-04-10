@@ -11,6 +11,14 @@ img {
   justify-self: center;
 }
 
+img:hover {
+  opacity: 0.5;
+}
+
+img:active {
+  opacity: 0;
+}
+
 #title-start {
   text-align: right;
   margin-right: 10px;
