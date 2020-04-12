@@ -2,9 +2,10 @@
   display: grid;
   grid-area: 3 / 2;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 5px;
 }
 
-.dropdown {
+.dropDown {
   justify-self: center;
   margin-top: 1px;
 }

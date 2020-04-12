@@ -5,7 +5,7 @@ import AddData from "./components/AddData/addData";
 import InputFile from "./components/InputFile/inputFile";
 import "./App.css";
 
-const App = () => {
+export default () =>{
   return (
     <div className='main'>
       <Title />
@@ -14,6 +14,4 @@ const App = () => {
       <InputFile />
     </div>
   );
-};
-
-export default App;
+}
