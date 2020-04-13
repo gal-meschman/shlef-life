@@ -2,7 +2,7 @@ import React from "react";
 import Title from "./components/Title/title";
 import Table from "./components/Table/table";
 import AddData from "./components/AddData/addData";
-import InputFile from "./components/InputFile/inputFile";
+import DragDrop from "./components/DragDrop/dragDrop";
 import "./App.css";
 
 export default () =>{
@@ -11,7 +11,7 @@ export default () =>{
       <Title />
       <Table />
       <AddData />
-      <InputFile />
+      <DragDrop />
     </div>
   );
 }

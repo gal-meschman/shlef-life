@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
-import "./inputFile.css";
+import "./dragDrop.css";
 
 export default () => {
   const onDrop = useCallback((acceptedFiles) => {
@@ -19,7 +19,7 @@ export default () => {
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   return (
-    <div className='inputFile' {...getRootProps()}>
+    <div className='dragDrop' {...getRootProps()}>
       <input {...getInputProps()} />
       <p>Drag 'n' drop some files here, or click to select files</p>
     </div>
