@@ -1,5 +1,26 @@
 .dragDrop {
   grid-area: 4 / 2;
   justify-self: center;
-  margin-top: 10px;
+  margin-top: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-width: 2px;
+  border-radius: 2px;
+  border-style: dashed;
+  background-color: #bdbdbd;
+  color: black;
+  outline: none;
+}
+
+.dragDrop:hover{
+  background-color: white;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+#uploadFile {
+  width: 100px;
 }

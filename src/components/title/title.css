@@ -5,17 +5,17 @@
   font-family: Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
-img {
+#happyFoodLogo {
   width: 100%;
   height: auto;
   justify-self: center;
 }
 
-img:hover {
+#happyFoodLogo:hover {
   opacity: 0.5;
 }
 
-img:active {
+#happyFoodLogo:active {
   opacity: 0;
 }
 

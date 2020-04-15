@@ -5,10 +5,10 @@ import { Table } from "react-bootstrap";
 import "./table.css";
 
 const checkDate = (product) =>
-  Date.parse(moment(product.date)) >=
+  Date.parse(moment(new Date(product.date))) >=
   Date.parse(moment().add(1, "week").format())
     ? "white"
-    : Date.parse(moment(product.date)) >=
+    : Date.parse(moment(new Date(product.date))) >=
       Date.parse(moment().add(3, "days").format())
     ? "#ffcc00"
     : "red";

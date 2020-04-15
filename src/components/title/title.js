@@ -6,7 +6,7 @@ export default () => {
   return (
     <div className='title'>
       <h1 id='title-start'>Shelf</h1>
-      <img src={logo} alt='logo' />
+      <img id = "happyFoodLogo" src={logo} alt='logo' />
       <h1 id='title-end'>Life</h1>
     </div>
   );
