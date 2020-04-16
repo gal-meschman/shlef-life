@@ -1,7 +1,7 @@
 .main {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 80px 1fr 40px 200px;
+  grid-template-rows: 80px 150px 40px 185px;
   grid-row-gap: 10px;
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */

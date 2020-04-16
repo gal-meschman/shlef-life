@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import { addProduct } from "../../store/actions";
 import DropDown from "./dropDown";
 import "./addData.css";
 
 export default () => {
+  const products = useSelector((state) => state);
+  
   const [product, setProduct] = useState({
     name: "",
     category: "Categories",
@@ -28,6 +30,7 @@ export default () => {
     else {
       dispatch(
         addProduct({
+          key: (products.length + 1),
           name: product.name,
           category: product.category,
           date: moment().format("l"),

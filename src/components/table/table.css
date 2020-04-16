@@ -1,7 +1,7 @@
-.table {
+.table-responsive {
   grid-area: 2 / 2;
 }
 
-#last-td {
-  border-left: 2px solid black;
+.removeProduct:hover {
+  color: red;
 }

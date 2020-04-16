@@ -5,4 +5,11 @@ const addProduct = (obj) => {
   };
 };
 
-export { addProduct };
+const removeProduct = (id) => {
+  return {
+    type: "REMOVEPRODUCT",
+    key: id,
+  };
+};
+
+export { addProduct, removeProduct };
