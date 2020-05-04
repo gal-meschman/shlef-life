@@ -24,9 +24,10 @@ const compare = (a, b) =>
 products.sort(compare);
 
 const handlePosition = (prevState, action) => {
-  if ( prevState.length === 0 ||
+  if (
+    prevState.length === 0 ||
     Date.parse(prevState[prevState.length - 1].date) <=
-    Date.parse(action.payload.date)
+      Date.parse(action.payload.date)
   )
     prevState.splice(prevState.length, 0, action.payload);
   else {

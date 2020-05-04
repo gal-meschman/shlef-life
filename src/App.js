@@ -5,8 +5,6 @@ import AddData from "./components/AddData/addData";
 import DragDrop from "./components/DragDrop/dragDrop";
 import "./App.css";
 
-//No coding on my birthday bitch!
-
 export default () =>{
   return (
     <div className='main'>

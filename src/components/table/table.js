@@ -18,7 +18,7 @@ export default () => {
       ? "#ffcc00"
       : "red";
 
-  const handleRemove = (e) => dispatch(removeProduct(e.target.id));
+  const handleRemove = (e) => dispatch(removeProduct(parseInt(e.target.id)));
 
   const renderProducts = (product, index) => (
     <tr key={index}>

@@ -4,10 +4,9 @@ import moment from "moment";
 import { addProduct } from "../../store/actions";
 import DropDown from "./dropDown";
 import "./addData.css";
-
 export default () => {
   const products = useSelector((state) => state);
-  
+
   const [product, setProduct] = useState({
     name: "",
     category: "Categories",
@@ -16,7 +15,7 @@ export default () => {
   const dispatch = useDispatch();
 
   const handleName = (e) => setProduct({ ...product, name: e.target.value });
-  
+
   const handleCategory = (categoryName) => {
     setProduct({
       ...product,
@@ -30,7 +29,7 @@ export default () => {
     else {
       dispatch(
         addProduct({
-          key: (products.length + 1),
+          key: products.length + 1,
           name: product.name,
           category: product.category,
           date: moment().format("l"),

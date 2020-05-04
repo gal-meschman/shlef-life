@@ -14,10 +14,14 @@
   outline: none;
 }
 
-.dragDrop:hover{
+.dragFile{
   background-color: white;
   cursor: pointer;
   opacity: 0.7;
+}
+
+.dragDrop:hover{
+  cursor: pointer;
 }
 
 #uploadFile {

@@ -10,16 +10,10 @@ async function getPdfText(data) {
   return (await Promise.all(pageTexts)).join("");
 }
 
-const dragDropStyle = {
-  backgroundColor: "white",
-  cursor: "pointer",
-  opacity: 0.7,
-};
-
 const regexCarmela = /^(?!(\d* יח׳)$).*/gm;
 
 const filterArray = (product) => 
 !product.includes("ק״ג") && !product.includes("מארז") && product.trim();
 
 
-export { getPdfText, dragDropStyle, filterArray, regexCarmela };
+export { getPdfText, filterArray, regexCarmela };

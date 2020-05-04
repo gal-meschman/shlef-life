@@ -1,22 +1,23 @@
 import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import {
-  getPdfText,
-  dragDropStyle,
-  filterArray,
-  regexCarmela,
-} from "./functions";
+import { getPdfText, filterArray, regexCarmela } from "./functions";
 import logo from "./uploadFile.png";
 import "./dragDrop.css";
 
 export default () => {
   const [ishover, setIshover] = useState(false);
-  const onDrag = () => {
-    // console.log("onDragOver event");
-    // setIshover(true);
-  };
-  let arr = [];
+  // const [arr, setArr] = useState([]);
+
+  const onDragOver = () => {
+    !ishover && setIshover(true);
+  }
+  const onDragLeave = () => {
+    setIshover(false);
+  }
+
   const onDrop = useCallback((acceptedFiles) => {
+    let arr = [];
+    setIshover(false);
     acceptedFiles.forEach((file) => {
       const reader = new FileReader();
       file.path.includes(".pdf")
@@ -35,10 +36,10 @@ export default () => {
 
   return (
     <div
-      className='dragDrop'
-      style={ishover ? dragDropStyle : {}}
-      onDragOver={onDrag()}
+      className={`dragDrop ${ishover && "dragFile"}`}
       {...getRootProps()}
+      onDragOver= {onDragOver}
+      onDragLeave = {onDragLeave}
     >
       <input {...getInputProps()} />
       <p>Drag your file here, or click to select file</p>
