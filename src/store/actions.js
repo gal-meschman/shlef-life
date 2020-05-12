@@ -1,3 +1,10 @@
+const addProducts = (array) => {
+  return {
+    type: "ADDPRODUCTS",
+    payload: array,
+  };
+};
+
 const addProduct = (obj) => {
   return {
     type: "ADDPRODUCT",
@@ -12,4 +19,4 @@ const removeProduct = (id) => {
   };
 };
 
-export { addProduct, removeProduct };
+export { addProducts, addProduct, removeProduct };

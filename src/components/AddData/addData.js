@@ -13,7 +13,7 @@ export default () => {
     date: "",
   });
   const dispatch = useDispatch();
-
+  
   const handleName = (e) => setProduct({ ...product, name: e.target.value });
 
   const handleCategory = (categoryName) => {

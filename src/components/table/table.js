@@ -1,13 +1,25 @@
-import React from "react";
+import React, {useEffect} from "react";
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
 import { Table } from "react-bootstrap";
-import { removeProduct } from "../../store/actions";
+import { removeProduct, addProducts } from "../../store/actions";
+import {getProudcts} from "./functions"
+import {pick} from 'lodash';
 import "./table.css";
 
 export default () => {
   const products = useSelector((state) => state);
   const dispatch = useDispatch();
+  useEffect(()=> {
+    getProudcts().then(products => {
+      if(products!==undefined)
+      {
+        let newProducts = products.data.map(product => 
+          pick(product,['key', 'name', 'category','date']));
+        dispatch(addProducts(newProducts));
+      }
+    })
+  },[])
 
   const checkDate = (product) =>
     Date.parse(moment(new Date(product.date))) >=

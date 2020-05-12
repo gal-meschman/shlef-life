@@ -6,7 +6,6 @@ import "./dragDrop.css";
 
 export default () => {
   const [ishover, setIshover] = useState(false);
-  // const [arr, setArr] = useState([]);
 
   const onDragOver = () => {
     !ishover && setIshover(true);

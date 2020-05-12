@@ -1,6 +1,7 @@
 import moment from "moment";
 
 const products = [
+  { key: 3, name: "Expired", category: "Example", date: moment().format("l") },
   {
     key: 1,
     name: "Ready",
@@ -13,7 +14,6 @@ const products = [
     category: "Example",
     date: moment().add(9, "d").format("l"),
   },
-  { key: 3, name: "Expired", category: "Example", date: moment().format("l") },
 ];
 
 const compare = (a, b) =>
@@ -21,19 +21,19 @@ const compare = (a, b) =>
     ? 1
     : -1;
 
-products.sort(compare);
+const sorted = (data) => data.sort(compare);
 
-const handlePosition = (prevState, action) => {
+const handlePosition = (prevState, payload) => {
   if (
     prevState.length === 0 ||
     Date.parse(prevState[prevState.length - 1].date) <=
-      Date.parse(action.payload.date)
+      Date.parse(payload.date)
   )
-    prevState.splice(prevState.length, 0, action.payload);
+    prevState.splice(prevState.length, 0, payload);
   else {
     for (let i = 0; i < prevState.length; i++)
-      if (Date.parse(prevState[i].date) >= Date.parse(action.payload.date)) {
-        prevState.splice(i, 0, action.payload);
+      if (Date.parse(prevState[i].date) >= Date.parse(payload.date)) {
+        prevState.splice(i, 0, payload);
         break;
       }
   }
@@ -42,4 +42,4 @@ const handlePosition = (prevState, action) => {
 
 const filterKey = (product, key) => product.key !== key;
 
-export { handlePosition, filterKey, products };
+export { handlePosition, filterKey, products, sorted };
