@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import moment from "moment";
-import axios from "axios";
 import { useDispatch } from "react-redux";
-import { pick } from "lodash";
 import DropDown from "./dropDown";
 import { addProduct } from "../../store/actions";
 import "./addData.css";
 
 export default () => {
   const [product, setProduct] = useState({
-    name: "",
-    category: "Categories",
+    name: "bdika",
+    category: "Exa", //Categories
     date: "",
   });
   const dispatch = useDispatch();
@@ -28,22 +26,11 @@ export default () => {
     if (product.category === "Categories" || product.name === "")
       alert("Missing product information");
     else {
-      let newProduct = {
+      dispatch(addProduct({
         name: product.name,
         category: product.category,
         date: moment().format("l"),
-      };
-      try {
-        await axios
-          .post("http://localhost:2000/addProduct", newProduct)
-          .then((res) =>
-            dispatch(
-              addProduct(pick(res.data, ["_id", "name", "category", "date"]))
-            )
-          );
-      } catch (err) {
-        alert("DataBase not connected");
-      }
+      }));
     }
     setProduct({ name: "", category: "Categories", date: "" });
   };

@@ -1,36 +1,19 @@
 import React, { useEffect } from "react";
-import axios from "axios";
-import { pick } from "lodash";
 import { useSelector, useDispatch } from "react-redux";
 import { Table } from "react-bootstrap";
-import { removeProduct, addProducts } from "../../store/actions";
-import { getProudcts, checkDate } from "./functions";
+import { removeProduct, getAllProducts } from "../../store/actions";
+import checkDate from "./functions";
 import "./table.css";
 
 export default () => {
   const products = useSelector((state) => state);
   const dispatch = useDispatch();
   useEffect(() => {
-    getProudcts().then((products) => {
-      if (products !== undefined) {
-        let newProducts = products.data.map((product) =>
-          pick(product, ["_id", "name", "category", "date"])
-        );
-        dispatch(addProducts(newProducts));
-      }
-    });
+    dispatch(getAllProducts());
   }, [dispatch]);
 
   const handleRemove = async (e) => {
-    e.persist();
-    try {
-      await axios.delete("http://localhost:2000/removeProduct", {
-        _id: e.target.id,
-      });
-      dispatch(removeProduct(e.target.id));
-    } catch (err) {
-      alert("DataBase not connected");
-    }
+    dispatch(removeProduct(e.target.id));
   };
 
   const renderProducts = (product, index) => (

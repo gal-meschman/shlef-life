@@ -2,7 +2,7 @@ import { handlePosition, filterById, products, sorted } from "./functions";
 
 export default (state = products, action) => {
   switch (action.type) {
-    case "ADDPRODUCTS":
+    case "GETALLPRODUCTS":
       return sorted(action.payload);
     case "ADDPRODUCT":
       return handlePosition([...state], action.payload);
