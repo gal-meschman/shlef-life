@@ -1,19 +1,20 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
-import { addProduct } from "../../store/actions";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { pick } from "lodash";
 import DropDown from "./dropDown";
+import { addProduct } from "../../store/actions";
 import "./addData.css";
-export default () => {
-  const products = useSelector((state) => state);
 
+export default () => {
   const [product, setProduct] = useState({
     name: "",
     category: "Categories",
     date: "",
   });
   const dispatch = useDispatch();
-  
+
   const handleName = (e) => setProduct({ ...product, name: e.target.value });
 
   const handleCategory = (categoryName) => {
@@ -23,20 +24,28 @@ export default () => {
     });
   };
 
-  const handleAdd = () => {
+  const handleAdd = async () => {
     if (product.category === "Categories" || product.name === "")
       alert("Missing product information");
     else {
-      dispatch(
-        addProduct({
-          key: products.length + 1,
-          name: product.name,
-          category: product.category,
-          date: moment().format("l"),
-        })
-      );
-      setProduct({ name: "", category: "Categories", date: "" });
+      let newProduct = {
+        name: product.name,
+        category: product.category,
+        date: moment().format("l"),
+      };
+      try {
+        await axios
+          .post("http://localhost:2000/addProduct", newProduct)
+          .then((res) =>
+            dispatch(
+              addProduct(pick(res.data, ["_id", "name", "category", "date"]))
+            )
+          );
+      } catch (err) {
+        alert("DataBase not connected");
+      }
     }
+    setProduct({ name: "", category: "Categories", date: "" });
   };
 
   return (

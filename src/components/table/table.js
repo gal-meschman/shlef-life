@@ -1,40 +1,41 @@
-import React, {useEffect} from "react";
-import moment from "moment";
+import React, { useEffect } from "react";
+import axios from "axios";
+import { pick } from "lodash";
 import { useSelector, useDispatch } from "react-redux";
 import { Table } from "react-bootstrap";
 import { removeProduct, addProducts } from "../../store/actions";
-import {getProudcts} from "./functions"
-import {pick} from 'lodash';
+import { getProudcts, checkDate } from "./functions";
 import "./table.css";
 
 export default () => {
   const products = useSelector((state) => state);
   const dispatch = useDispatch();
-  useEffect(()=> {
-    getProudcts().then(products => {
-      if(products!==undefined)
-      {
-        let newProducts = products.data.map(product => 
-          pick(product,['key', 'name', 'category','date']));
+  useEffect(() => {
+    getProudcts().then((products) => {
+      if (products !== undefined) {
+        let newProducts = products.data.map((product) =>
+          pick(product, ["_id", "name", "category", "date"])
+        );
         dispatch(addProducts(newProducts));
       }
-    })
-  },[])
+    });
+  }, [dispatch]);
 
-  const checkDate = (product) =>
-    Date.parse(moment(new Date(product.date))) >=
-    Date.parse(moment().add(1, "week").format())
-      ? "white"
-      : Date.parse(moment(new Date(product.date))) >=
-        Date.parse(moment().add(3, "days").format())
-      ? "#ffcc00"
-      : "red";
-
-  const handleRemove = (e) => dispatch(removeProduct(parseInt(e.target.id)));
+  const handleRemove = async (e) => {
+    e.persist();
+    try {
+      await axios.delete("http://localhost:2000/removeProduct", {
+        _id: e.target.id,
+      });
+      dispatch(removeProduct(e.target.id));
+    } catch (err) {
+      alert("DataBase not connected");
+    }
+  };
 
   const renderProducts = (product, index) => (
     <tr key={index}>
-      <td className='removeProduct' id={product.key} onClick={handleRemove}>
+      <td className='removeProduct' id={product._id} onClick={handleRemove}>
         X
       </td>
       <td>{product.name}</td>

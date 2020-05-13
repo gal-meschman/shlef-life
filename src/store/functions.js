@@ -1,15 +1,15 @@
 import moment from "moment";
 
 const products = [
-  { key: 3, name: "Expired", category: "Example", date: moment().format("l") },
+  { _id: "1", name: "Expired", category: "Example", date: moment().format("l") },
   {
-    key: 1,
+    _id: "2",
     name: "Ready",
     category: "Example",
     date: moment().add(5, "d").format("l"),
   },
   {
-    key: 2,
+    _id: "3",
     name: "Safe",
     category: "Example",
     date: moment().add(9, "d").format("l"),
@@ -40,6 +40,6 @@ const handlePosition = (prevState, payload) => {
   return prevState;
 };
 
-const filterKey = (product, key) => product.key !== key;
+const filterById = (product, id) => product._id !== id;
 
-export { handlePosition, filterKey, products, sorted };
+export { handlePosition, filterById, products, sorted };
